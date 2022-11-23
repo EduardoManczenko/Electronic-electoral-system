@@ -1,4 +1,43 @@
 {
   "_format": "hh-sol-cache-2",
-  "files": {}
+  "files": {
+    "C:\\Users\\Usuario\\Documents\\Nosferas\\Web3-repositorios\\-Electronic-electoral-system\\contracts\\Urna.sol": {
+      "lastModificationDate": 1669235550395,
+      "contentHash": "eefacd67c781f1d9d515468c6f9c7411",
+      "sourceName": "contracts/Urna.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "candidate",
+        "candidateFactory",
+        "elector",
+        "electorFactory"
+      ]
+    }
+  }
 }
