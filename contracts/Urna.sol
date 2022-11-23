@@ -21,28 +21,28 @@ contract candidateFactory{
         _;
     }
 
-    function newCandidateFederalDeputie(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber, string memory _electedTo) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, _electedTo);
+    function newCandidateFederalDeputie(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Federal Deputie");
         federalDeputies.push(newCandidate);
     }
 
-    function newCandidateStateDeputie(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber, string memory _electedTo) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, _electedTo);
+    function newCandidateStateDeputie(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "State Deputie");
         stateDeputies.push(newCandidate);
     }
 
-    function newCandidateSenator(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber, string memory _electedTo) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, _electedTo);
+    function newCandidateSenator(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Senator");
         senators.push(newCandidate);
     }
 
-    function newCandidateGovernor(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber, string memory _electedTo) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, _electedTo);
+    function newCandidateGovernor(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Governor");
         governors.push(newCandidate);
     }
 
-    function newCandidatePresident(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber, string memory _electedTo) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, _electedTo);
+    function newCandidatePresident(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "President");
         presidents.push(newCandidate);
     }
 
@@ -102,6 +102,34 @@ contract candidate{
         voteControl[msg.sender] = true;
         totalVotes += 1;
     }
+
+    function returnName()external view returns(string memory){
+        return name;
+    }
+
+    function returnDescribe()external view returns(string memory){
+        return describe;
+    }
+
+    function returnPhote()external view returns(string memory){
+        return candidatePhoto;
+    }
+
+    function returnPoliticalPartyName()external view returns(string memory){
+        return politicalPartyName;
+    }
+
+    function returnPoliticalPartyNumber()external view returns(uint){
+        return politicalPartyNumber;
+    }
+
+    function returnElectedTo()external view returns(string memory){
+        return electedTo;
+    }
+
+    function returnTotalVotes()external view returns(uint){
+        return totalVotes;
+    }
 }
 
 
@@ -126,6 +154,10 @@ contract electorFactory{
 
         elector Elector = new elector(_name, _cpf, msg.sender);
         electors.push(Elector);
+    }
+
+    function viewElectors() public view returns(elector[] memory){
+        return electors;
     }
 }
 
