@@ -2,16 +2,20 @@
 pragma solidity ^0.8.0;
 
 
-
-contract candidateFactory{
+contract urna{
+    //candidates
     candidate[] public federalDeputies;
     candidate[] public stateDeputies;
     candidate[] public senators;
     candidate[] public governors;
     candidate[] public presidents;
 
-    address owner;
+    //elector
+    elector[] public electors;
+    mapping(elector => bool) electorsAddressVoteControl;
+    mapping(string => bool) cpfControl;
 
+    address owner;
     constructor(){
         owner = msg.sender;
     }
@@ -21,32 +25,34 @@ contract candidateFactory{
         _;
     }
 
+
+
+
+    //Candidates
     function newCandidateFederalDeputie(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Federal Deputie");
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Federal Deputie", address(this));
         federalDeputies.push(newCandidate);
     }
 
     function newCandidateStateDeputie(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "State Deputie");
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "State Deputie", address(this));
         stateDeputies.push(newCandidate);
     }
 
     function newCandidateSenator(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Senator");
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Senator", address(this));
         senators.push(newCandidate);
     }
 
     function newCandidateGovernor(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Governor");
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "Governor", address(this));
         governors.push(newCandidate);
     }
 
     function newCandidatePresident(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber) onlyOwner() public {
-        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "President");
+        candidate newCandidate = new candidate(_name, _describe, _candidatePhoto, _politicalPartyName, _politicalPartyNumber, "President", address(this));
         presidents.push(newCandidate);
     }
-
-
 
     function viewCandidatesFederalDeputies()public view returns(candidate[] memory){
         return federalDeputies;
@@ -67,8 +73,27 @@ contract candidateFactory{
     function viewCandidatesPresidents()public view returns(candidate[] memory){
         return presidents;
     }
-}
 
+
+    //elector
+
+    function newElector(string memory _name, string memory _cpf, address _owner) onlyOwner() public{
+        require(!cpfControl[_cpf], "ERROR: cpf already registered!");
+        cpfControl[_cpf] = true;
+        elector Elector = new elector(_name, _cpf, _owner);
+        electorsAddressVoteControl[Elector] = true;
+        electors.push(Elector);
+    }
+
+    function viewElectors() public view returns(elector[] memory){
+        return electors;
+    }
+
+    function returnElectorPerm(elector _address) public view returns(bool){
+        return electorsAddressVoteControl[_address];
+    }
+
+}
 
 contract candidate{
     string name;
@@ -78,28 +103,37 @@ contract candidate{
     uint politicalPartyNumber;
     string electedTo;
 
+    address urnaAddress;
+
     uint totalVotes;
 
     mapping(address => bool) voteControl;
 
-    constructor(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber, string memory _electedTo){
+    constructor(string memory _name, string memory _describe, string memory _candidatePhoto, string memory _politicalPartyName, uint _politicalPartyNumber, string memory _electedTo, address _urnaAddress){
         name = _name;
         describe = _describe;
         politicalPartyName = _politicalPartyName;
         politicalPartyNumber = _politicalPartyNumber;
         electedTo = _electedTo;
         candidatePhoto = _candidatePhoto;
-        
+        urnaAddress = _urnaAddress;
+
         totalVotes = 0;
     }
 
     modifier controlVote(){
         require(!voteControl[msg.sender], "ERROR: You have already voted!");
+        urna ur = urna(urnaAddress);
+        bool requestElector = ur.returnElectorPerm(elector(msg.sender));
+        require(requestElector, "ERROR: You not are Elector!");
         _;
     }
 
+    
+
     function voteInThisCandidate()public controlVote(){
         voteControl[msg.sender] = true;
+        voteControl[tx.origin] = true;
         totalVotes += 1;
     }
 
@@ -132,34 +166,6 @@ contract candidate{
     }
 }
 
-
-contract electorFactory{
-    address owner;
-
-    elector[] electors;
-    mapping(string => bool) cpfControl;
-
-    constructor(){
-        owner = msg.sender;
-    }
-
-    modifier onlyOwner(){
-        require(msg.sender == owner, "ERROR: You're not the owner!");
-        _;
-    }
-
-    function newElector(string memory _name, string memory _cpf) onlyOwner() public{
-        require(!cpfControl[_cpf], "ERROR: cpf already registered!");
-        cpfControl[_cpf] = true;
-
-        elector Elector = new elector(_name, _cpf, msg.sender);
-        electors.push(Elector);
-    }
-
-    function viewElectors() public view returns(elector[] memory){
-        return electors;
-    }
-}
 
 contract elector{
     string name;
@@ -195,6 +201,7 @@ contract elector{
         require(!voteControlFederalDeputies[msg.sender], "ERROR: You already voted for this position");
         voteControlFederalDeputies[msg.sender] = true;
         candidate choice = candidate(_candidateAddress);
+        federalDeputieVoted = choice;
         choice.voteInThisCandidate();
     }
 
@@ -202,6 +209,7 @@ contract elector{
         require(!voteControlSenators[msg.sender], "ERROR: You already voted for this position");
         voteControlStateDeputies[msg.sender] = true;
         candidate choice = candidate(_candidateAddress);
+        stateDeputieVoted = choice;
         choice.voteInThisCandidate();
     }
 
@@ -209,6 +217,7 @@ contract elector{
         require(!voteControlSenators[msg.sender], "ERROR: You already voted for this position");
         voteControlSenators[msg.sender] = true;
         candidate choice = candidate(_candidateAddress);
+        senatorVoted = choice;
         choice.voteInThisCandidate();
     }
 
@@ -216,6 +225,7 @@ contract elector{
         require(!voteControlGovernors[msg.sender], "ERROR: You already voted for this position");
         voteControlGovernors[msg.sender] = true;
         candidate choice = candidate(_candidateAddress);
+        governorVoted = choice;
         choice.voteInThisCandidate();
     }
 
@@ -223,6 +233,38 @@ contract elector{
         require(!voteControlPresidents[msg.sender], "ERROR: You already voted for this position");
         voteControlPresidents[msg.sender] = true;
         candidate choice = candidate(_candidateAddress);
+        presidentVoted = choice;
         choice.voteInThisCandidate();
+    }
+
+    function returnElectorName()external view onlyOwner() returns(string memory){
+        return name;
+    }
+
+    function returnElectorCpf()external view onlyOwner() returns(string memory){
+        return cpf;
+    }
+
+    function returnOwner()external view onlyOwner() returns(address){
+        return owner;
+    }
+
+    function returnVote(uint _choice)external view onlyOwner() returns(candidate){
+        // 1 federal deputie
+        // 2 state deputie
+        // 3 senator
+        // 4 governor
+        // 5 president
+        if(_choice == 1){
+            return federalDeputieVoted;
+        }else if(_choice == 2){
+            return stateDeputieVoted;
+        }else if(_choice == 3){
+            return senatorVoted;
+        }else if(_choice == 4){
+            return governorVoted;
+        }else if(_choice == 5){
+            return presidentVoted;
+        }
     }
 }
