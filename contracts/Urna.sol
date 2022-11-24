@@ -256,22 +256,22 @@ contract elector{
         return owner;
     }
 
-    function returnVote(uint _choice)external view onlyOwner() returns(address vote){
+    function returnVote(uint _choice)external view onlyOwner() returns(candidate vote){
         // 1 federal deputie
         // 2 state deputie
         // 3 senator
         // 4 governor
         // 5 president
         if(_choice == 1){
-            return address(federalDeputieVoted);
+            return federalDeputieVoted;
         }else if(_choice == 2){
-            return address(stateDeputieVoted);
+            return stateDeputieVoted;
         }else if(_choice == 3){
-            return address(senatorVoted);
+            return senatorVoted;
         }else if(_choice == 4){
-            return address(governorVoted);
+            return governorVoted;
         }else if(_choice == 5){
-            return address(presidentVoted);
+            return presidentVoted;
         }
     }
 }
