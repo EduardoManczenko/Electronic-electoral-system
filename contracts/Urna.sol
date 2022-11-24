@@ -14,8 +14,11 @@ contract urna{
     elector[] public electors;
     mapping(elector => bool) electorsAddressVoteControl;
     mapping(string => bool) cpfControl;
+    mapping(address => elector) electorAddressKey;
 
+    //TSE owner
     address owner;
+
     constructor(){
         owner = msg.sender;
     }
@@ -82,6 +85,7 @@ contract urna{
         cpfControl[_cpf] = true;
         elector Elector = new elector(_name, _cpf, _owner);
         electorsAddressVoteControl[Elector] = true;
+        electorAddressKey[_owner] = Elector;
         electors.push(Elector);
     }
 
@@ -93,6 +97,9 @@ contract urna{
         return electorsAddressVoteControl[_address];
     }
 
+    function returnElectorAddressKey()external view returns(elector){
+        return electorAddressKey[msg.sender];
+    }
 }
 
 contract candidate{
