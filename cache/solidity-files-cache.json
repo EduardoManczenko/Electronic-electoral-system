@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\Usuario\\Documents\\Nosferas\\Web3-repositorios\\-Electronic-electoral-system\\contracts\\Urna.sol": {
-      "lastModificationDate": 1669250224208,
-      "contentHash": "3107a112f5af187efaa063aa108b26ff",
+      "lastModificationDate": 1671328424038,
+      "contentHash": "fcee6a6e84f7dfe51cd7f62e6a5e1b7c",
       "sourceName": "contracts/Urna.sol",
       "solcConfig": {
         "version": "0.8.17",

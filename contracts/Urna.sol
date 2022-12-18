@@ -109,7 +109,7 @@ contract urna{
 
     function viewTotalVotes(address candidate_)external view returns(uint){
         candidate x = candidate(candidate_);
-        return x.totalVotes();
+        return x.returnTotalVotes();
     }
 }
 
