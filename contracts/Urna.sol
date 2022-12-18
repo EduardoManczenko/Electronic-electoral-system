@@ -19,15 +19,22 @@ contract urna{
     //TSE owner
     address owner;
 
-    constructor(){
+    uint public time;
+
+    constructor(uint time_){
         owner = msg.sender;
+        time = block.timestamp + (time_ * 1 days);
+    }
+    
+    modifier inTime(){
+        require(block.timestamp <= time, "ERROR: Time is over!");
+        _;
     }
 
     modifier onlyOwner(){
         require(msg.sender == owner, "ERROR: You're not the owner!");
         _;
     }
-
 
 
 
@@ -79,7 +86,6 @@ contract urna{
 
 
     //elector
-
     function newElector(string memory _name, string memory _cpf, address _owner) onlyOwner() public{
         require(!cpfControl[_cpf], "ERROR: cpf already registered!");
         cpfControl[_cpf] = true;
@@ -100,6 +106,11 @@ contract urna{
     function returnElectorAddressKey()external view returns(elector){
         return electorAddressKey[msg.sender];
     }
+
+    function viewTotalVotes(address candidate_)external view returns(uint){
+        candidate x = candidate(candidate_);
+        return x.totalVotes();
+    }
 }
 
 contract candidate{
@@ -112,7 +123,7 @@ contract candidate{
 
     address urnaAddress;
 
-    uint totalVotes;
+    uint public totalVotes;
 
     mapping(address => bool) voteControl;
 
@@ -128,6 +139,12 @@ contract candidate{
         totalVotes = 0;
     }
 
+    modifier inTime(){
+        urna ur = urna(urnaAddress);
+        require(block.timestamp <= ur.time(), "ERROR: Time is over!");
+        _;
+    }
+
     modifier controlVote(){
         require(!voteControl[msg.sender], "ERROR: You have already voted!");
         urna ur = urna(urnaAddress);
@@ -136,9 +153,7 @@ contract candidate{
         _;
     }
 
-    
-
-    function voteInThisCandidate()public controlVote(){
+    function voteInThisCandidate()public controlVote() inTime(){
         voteControl[msg.sender] = true;
         voteControl[tx.origin] = true;
         totalVotes += 1;
