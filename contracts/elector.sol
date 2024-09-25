@@ -1,18 +1,19 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-
-import "./electorStructs.sol";
+import "./ElectorStructs.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract elector is electorStructs, Ownable{
+contract Elector is ElectorStructs, Ownable{
     electorData data;
     electorVote votes;
+    address urna;
 
-    constructor(string memory _name, string memory _cpf, address _owner)
+    constructor(electorData memory data_, address _owner, address _urna)
     Ownable(_owner)
     {
-        data = electorData(_name, _cpf);
+        data = data_;
+        urna = _urna;
     }
 
     function voteFederalDeputies(address _candidateAddress)external onlyOwner(){
