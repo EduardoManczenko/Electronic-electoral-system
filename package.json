@@ -1,12 +1,6 @@
 {
-  "dependencies": {
-    "dotenv": "^16.0.3"
-  },
   "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.4",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.6",
-    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.2.1",
-    "hardhat": "^2.10.1"
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.12"
   }
 }

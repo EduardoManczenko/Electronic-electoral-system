@@ -1,13 +1,14 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\Usuario\\Documents\\Nosferas\\Web3-repositorios\\-Electronic-electoral-system\\contracts\\Urna.sol": {
-      "lastModificationDate": 1671328424038,
-      "contentHash": "fcee6a6e84f7dfe51cd7f62e6a5e1b7c",
-      "sourceName": "contracts/Urna.sol",
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\candidate.sol": {
+      "lastModificationDate": 1727291610405,
+      "contentHash": "cdf846642e229e36c3ac2bb7ea614d32",
+      "sourceName": "contracts/candidate.sol",
       "solcConfig": {
-        "version": "0.8.17",
+        "version": "0.8.27",
         "settings": {
+          "evmVersion": "paris",
           "optimizer": {
             "enabled": false,
             "runs": 200
@@ -28,14 +29,91 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./urna.sol"
+      ],
       "versionPragmas": [
-        "^0.8.0"
+        "^0.8.27"
       ],
       "artifacts": [
-        "candidate",
-        "elector",
+        "candidate"
+      ]
+    },
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\urna.sol": {
+      "lastModificationDate": 1727291607451,
+      "contentHash": "58eac46f8c15cca267e1721135de16dd",
+      "sourceName": "contracts/urna.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./candidate.sol",
+        "./elector.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.27"
+      ],
+      "artifacts": [
         "urna"
+      ]
+    },
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\elector.sol": {
+      "lastModificationDate": 1727291611879,
+      "contentHash": "9f49d58a416b499179df415455e49d7a",
+      "sourceName": "contracts/elector.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./candidate.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.27"
+      ],
+      "artifacts": [
+        "elector"
       ]
     }
   }
