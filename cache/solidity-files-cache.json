@@ -79,8 +79,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\elector.sol": {
-      "lastModificationDate": 1727291611879,
-      "contentHash": "9f49d58a416b499179df415455e49d7a",
+      "lastModificationDate": 1727293392931,
+      "contentHash": "c94696e8c182ddec6bf5115c06021a8c",
       "sourceName": "contracts/elector.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -107,13 +107,124 @@
         }
       },
       "imports": [
-        "./candidate.sol"
+        "./electorStructs.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
       ],
       "versionPragmas": [
         "^0.8.27"
       ],
       "artifacts": [
         "elector"
+      ]
+    },
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\electorStructs.sol": {
+      "lastModificationDate": 1727292752281,
+      "contentHash": "bf62aa3d065756106492670198dd9399",
+      "sourceName": "contracts/electorStructs.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.27"
+      ],
+      "artifacts": [
+        "electorStructs"
+      ]
+    },
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1727292633965,
+      "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1727292633854,
+      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Context"
       ]
     }
   }
