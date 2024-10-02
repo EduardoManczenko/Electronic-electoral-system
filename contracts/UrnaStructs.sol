@@ -11,7 +11,6 @@ contract UrnaStructs{
     }
 
     Candidates candidates;
- 
     mapping(address => address) elector;
     mapping(address => uint) votes;
 }
