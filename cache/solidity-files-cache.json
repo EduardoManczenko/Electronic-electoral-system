@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Candidate.sol": {
-      "lastModificationDate": 1727295153228,
-      "contentHash": "68dd2a9888fa799ccef2eb6e8c8b36c0",
+      "lastModificationDate": 1727897278209,
+      "contentHash": "567744cf71c6ff23301849e9f029835c",
       "sourceName": "contracts/Candidate.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -40,8 +40,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\CandidateStructs.sol": {
-      "lastModificationDate": 1727294514587,
-      "contentHash": "8381aa3b234ee69c831f8a79bd46b200",
+      "lastModificationDate": 1727898236177,
+      "contentHash": "942c5d4cfb786e7d509d46708b141470",
       "sourceName": "contracts/CandidateStructs.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -76,8 +76,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Elector.sol": {
-      "lastModificationDate": 1727294530565,
-      "contentHash": "7279ad2335349d813b982af64abfa43c",
+      "lastModificationDate": 1727898857882,
+      "contentHash": "74ef766a4edf497452b638488021ba43",
       "sourceName": "contracts/Elector.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -115,8 +115,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\ElectorStructs.sol": {
-      "lastModificationDate": 1727294650473,
-      "contentHash": "dc104de4f58176fbb2a39221f8e55e5e",
+      "lastModificationDate": 1727897294252,
+      "contentHash": "807c674b1fd2826bcc2b4fca8adb555c",
       "sourceName": "contracts/ElectorStructs.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -225,8 +225,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Urna.sol": {
-      "lastModificationDate": 1727295219230,
-      "contentHash": "94cf733195765b5c41509de8aa5535c9",
+      "lastModificationDate": 1727898809637,
+      "contentHash": "6a63297dedfd3f17afb97b0d99940f58",
       "sourceName": "contracts/Urna.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -252,7 +252,13 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./UrnaStructs.sol",
+        "./CandidateStructs.sol",
+        "./ElectorStructs.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "./Elector.sol"
+      ],
       "versionPragmas": [
         "^0.8.27"
       ],
@@ -261,8 +267,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaStructs.sol": {
-      "lastModificationDate": 1727295124875,
-      "contentHash": "0d6a8b2c0b96dfe07217640d2348c923",
+      "lastModificationDate": 1727898102300,
+      "contentHash": "25ad05b9c15a8b406c51dc944eb569c3",
       "sourceName": "contracts/UrnaStructs.sol",
       "solcConfig": {
         "version": "0.8.27",

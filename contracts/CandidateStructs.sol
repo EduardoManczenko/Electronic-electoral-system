@@ -8,6 +8,5 @@ contract CandidateStructs{
         string candidatePhoto;
         string politicalPartyName;
         uint politicalPartyNumber;
-        uint electedTo; // 1: president, 2: governor, 3: senator, 4: stateDeputie, 5: federalDeputie
     }
 }

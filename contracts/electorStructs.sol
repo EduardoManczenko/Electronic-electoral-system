@@ -6,12 +6,4 @@ contract ElectorStructs{
         string name;
         string cpf;
     }
-
-    struct electorVote{
-        address federalDuputieVoted;
-        address stateDeputieVoted;
-        address senatorVoted;
-        address governorVoted;
-        address presidentVoted;
-    }
 }

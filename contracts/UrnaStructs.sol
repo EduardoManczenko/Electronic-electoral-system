@@ -9,8 +9,7 @@ contract UrnaStructs{
         address[] governors;
         address[] presidents;
     }
-
-    struct electors{
-        address[] electors;
-    }
+ 
+    mapping(address => address) elector;
+    mapping(address => uint) votes;
 }
