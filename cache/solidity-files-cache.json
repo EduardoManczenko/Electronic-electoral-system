@@ -225,8 +225,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Urna.sol": {
-      "lastModificationDate": 1727898809637,
-      "contentHash": "6a63297dedfd3f17afb97b0d99940f58",
+      "lastModificationDate": 1727900224922,
+      "contentHash": "9c5659bd9478ed77da1c88e42c48a58a",
       "sourceName": "contracts/Urna.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -253,11 +253,8 @@
         }
       },
       "imports": [
-        "./UrnaStructs.sol",
-        "./CandidateStructs.sol",
-        "./ElectorStructs.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "./Elector.sol"
+        "./UrnaRegister.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
       ],
       "versionPragmas": [
         "^0.8.27"
@@ -267,8 +264,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaStructs.sol": {
-      "lastModificationDate": 1727898102300,
-      "contentHash": "25ad05b9c15a8b406c51dc944eb569c3",
+      "lastModificationDate": 1727899279836,
+      "contentHash": "05c326121e2965dfbfcfae0fbf0abc0f",
       "sourceName": "contracts/UrnaStructs.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -300,6 +297,48 @@
       ],
       "artifacts": [
         "UrnaStructs"
+      ]
+    },
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaRegister.sol": {
+      "lastModificationDate": 1727900204590,
+      "contentHash": "3207bce4e667307f9498f20e17a994d7",
+      "sourceName": "contracts/UrnaRegister.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./Elector.sol",
+        "./Candidate.sol",
+        "./CandidateStructs.sol",
+        "./ElectorStructs.sol",
+        "./UrnaStructs.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.27"
+      ],
+      "artifacts": [
+        "UrnaRegister"
       ]
     }
   }
