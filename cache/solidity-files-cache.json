@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Candidate.sol": {
-      "lastModificationDate": 1727897278209,
-      "contentHash": "567744cf71c6ff23301849e9f029835c",
+      "lastModificationDate": 1730868718009,
+      "contentHash": "e953a711bf4bdfa9d20f814775d06b65",
       "sourceName": "contracts/Candidate.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -76,8 +76,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaRegister.sol": {
-      "lastModificationDate": 1730868345214,
-      "contentHash": "3207bce4e667307f9498f20e17a994d7",
+      "lastModificationDate": 1730870977203,
+      "contentHash": "35318472e190c1d64fa92909474bc83a",
       "sourceName": "contracts/UrnaRegister.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -118,8 +118,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Elector.sol": {
-      "lastModificationDate": 1727898857882,
-      "contentHash": "74ef766a4edf497452b638488021ba43",
+      "lastModificationDate": 1730868726623,
+      "contentHash": "0a7e5be2a1a90699febd25be2e26bf9c",
       "sourceName": "contracts/Elector.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -193,8 +193,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaStructs.sol": {
-      "lastModificationDate": 1727900335087,
-      "contentHash": "9351875aa2797f0a0380bb22eeda4517",
+      "lastModificationDate": 1730870730601,
+      "contentHash": "be8a2951a457b6d122cecaa330f2b44f",
       "sourceName": "contracts/UrnaStructs.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -303,8 +303,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Urna.sol": {
-      "lastModificationDate": 1730868336727,
-      "contentHash": "a7d4ead1a136cfa0773b3566e114b701",
+      "lastModificationDate": 1730871546150,
+      "contentHash": "a64971f227d5a9d111e6b7d2dc6d1f02",
       "sourceName": "contracts/Urna.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -332,6 +332,7 @@
       },
       "imports": [
         "./UrnaRegister.sol",
+        "./UrnaVoteControl.sol",
         "@openzeppelin/contracts/access/Ownable.sol"
       ],
       "versionPragmas": [
@@ -339,6 +340,42 @@
       ],
       "artifacts": [
         "Urna"
+      ]
+    },
+    "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaVoteControl.sol": {
+      "lastModificationDate": 1730870092051,
+      "contentHash": "bf49e0f85f4d815fbd59974d0b510f83",
+      "sourceName": "contracts/UrnaVoteControl.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.27"
+      ],
+      "artifacts": [
+        "UrnaVoteControl"
       ]
     }
   }
