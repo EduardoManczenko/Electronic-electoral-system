@@ -14,7 +14,11 @@ contract Candidate is CandidateStructs{
     }
 
 
-    function returnCandidateData()external view returns(candidateData memory){
+    function returnCandidateData()public view returns(candidateData memory){
         return data;
+    }
+
+    function returnCandidateUrna()public view returns(address){
+        return urna;
     }
 }

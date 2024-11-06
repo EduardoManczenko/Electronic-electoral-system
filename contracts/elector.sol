@@ -16,7 +16,7 @@ contract Elector is ElectorStructs, Ownable{
     }
 
 
-    function returnElectorData()external view returns(electorData memory){
+    function returnElectorData()public view returns(electorData memory){
         return data;
     }
 }
