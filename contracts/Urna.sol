@@ -15,8 +15,9 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
     error candidadeNotFound(address candidate);
     error electorNotFound(address elector);
 
-   constructor(address _owner)
-   Ownable(_owner)
+
+   constructor(address _TSE)
+   Ownable(_TSE)
    {
 
    }
@@ -42,11 +43,11 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
         return votes[candidate];
     }
 
-    function createCandidate(candidateData memory data_, uint position_) public{
+    function createCandidate(candidateData memory data_, uint position_) public onlyOwner{
         createCandidate_(data_, position_);
     }
 
-    function createElector(electorData memory data_, address owner_)public{
+    function createElector(electorData memory data_, address owner_)public onlyOwner{
         createElector_(data_, owner_);
     }
 }
