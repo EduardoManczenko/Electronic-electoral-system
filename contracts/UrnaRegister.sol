@@ -20,4 +20,12 @@ contract UrnaRegister is ElectorStructs, CandidateStructs, UrnaStructs{
         Elector elector_ = new Elector(data_, owner_, address(this));
         elector[owner_] = address(elector_);
     }
+
+    function verifyIfCandidateExists(address candidate_, uint position_)internal view returns(bool){
+        return candidates[position_][candidate_];
+    }
+    
+    function verifyIfElectorExists(address elector_)internal view returns(bool){
+        return elector[elector_] != address(0); // se retornar false nao existe
+    }
 }

@@ -12,6 +12,8 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
     event voted(address elector, address candidate, uint candidate_total_votes);
 
     error alreadyVoted_(address elector, uint position);
+    error candidadeNotFound(address candidate);
+    error electorNotFound(address elector);
 
    constructor(address _owner)
    Ownable(_owner)
@@ -19,14 +21,16 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
 
    }
 
-    modifier onlyElector{
-        require(elector[msg.sender] != address(0));
-        _;
-    }
      //position: 1 president, 2 governor, 3 senator, 4 state deputie, 5 federal deputie
-    function vote(address candidate, uint position)public onlyElector{
+    function vote(address candidate, uint position)public {
         bool alreadyVoted = verifyIfVoted(msg.sender, position);
         if(alreadyVoted) revert alreadyVoted_(msg.sender, position);
+
+        bool candidateExists = verifyIfCandidateExists(candidate, position);
+        if(!candidateExists) revert candidadeNotFound(candidate);
+
+        bool electorExists = verifyIfElectorExists(msg.sender);
+        if(!electorExists) revert electorNotFound(msg.sender);
 
         setVoteControl(msg.sender, position);
         votes[candidate]++;
