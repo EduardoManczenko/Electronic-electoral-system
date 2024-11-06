@@ -225,8 +225,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\Urna.sol": {
-      "lastModificationDate": 1727900224922,
-      "contentHash": "9c5659bd9478ed77da1c88e42c48a58a",
+      "lastModificationDate": 1727934788245,
+      "contentHash": "4e836ce48b18c7a1095528405cb69283",
       "sourceName": "contracts/Urna.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -264,8 +264,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaStructs.sol": {
-      "lastModificationDate": 1727899279836,
-      "contentHash": "05c326121e2965dfbfcfae0fbf0abc0f",
+      "lastModificationDate": 1727900335087,
+      "contentHash": "9351875aa2797f0a0380bb22eeda4517",
       "sourceName": "contracts/UrnaStructs.sol",
       "solcConfig": {
         "version": "0.8.27",
@@ -300,8 +300,8 @@
       ]
     },
     "C:\\Users\\eduardo\\Desktop\\main\\repositorios\\Pessoal\\Electronic-electoral-system\\contracts\\UrnaRegister.sol": {
-      "lastModificationDate": 1727900204590,
-      "contentHash": "3207bce4e667307f9498f20e17a994d7",
+      "lastModificationDate": 1727934659761,
+      "contentHash": "62d8f4b515eb0972029650693255bc42",
       "sourceName": "contracts/UrnaRegister.sol",
       "solcConfig": {
         "version": "0.8.27",
