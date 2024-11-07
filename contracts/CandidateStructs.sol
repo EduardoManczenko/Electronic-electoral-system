@@ -7,6 +7,6 @@ contract CandidateStructs{
         string describe;
         string candidatePhoto;
         string politicalPartyName;
-        uint politicalPartyNumber;
+        string politicalPartyNumber;
     }
 }

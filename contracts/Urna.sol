@@ -43,6 +43,14 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
         return votes[candidate];
     }
 
+    function verifyCandidates(uint position_) public view returns(address[] memory){
+        return candidates[position_];
+    }
+
+    function verifyElectors()public view returns(address[] memory){
+        return electors;
+    }
+
     function createCandidate(candidateData memory data_, uint position_) public onlyOwner{
         createCandidate_(data_, position_);
     }

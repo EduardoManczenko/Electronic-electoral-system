@@ -2,9 +2,10 @@
 pragma solidity ^0.8.27;
 
 contract UrnaStructs{
-    mapping(uint => mapping(address => bool)) candidates;
-    
-    mapping(address => address) elector;
+    mapping(uint => mapping(address => bool)) candidatesControl;
+    mapping(uint => address[]) candidates;
+    mapping(address => address) electorContracts;
+    address[] electors;
     mapping(address => uint) votes;
     
 }

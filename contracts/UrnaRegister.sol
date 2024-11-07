@@ -13,19 +13,21 @@ contract UrnaRegister is ElectorStructs, CandidateStructs, UrnaStructs{
      //position: 1 president, 2 governor, 3 senator, 4 state deputie, 5 federal deputie
     function createCandidate_(candidateData memory data_, uint position_)internal{
         Candidate candidate = new Candidate(data_, address(this));  
-        candidates[position_][address(candidate)] = true;
+        candidatesControl[position_][address(candidate)] = true;
+        candidates[position_].push(address(candidate));
     }
 
     function createElector_(electorData memory data_, address owner_)internal{  
         Elector elector_ = new Elector(data_, owner_, address(this));
-        elector[owner_] = address(elector_);
+        electorContracts[owner_] = address(elector_);
+        electors.push(address(elector_));
     }
 
     function verifyIfCandidateExists(address candidate_, uint position_)internal view returns(bool){
-        return candidates[position_][candidate_];
+        return candidatesControl[position_][candidate_];
     }
     
     function verifyIfElectorExists(address elector_)internal view returns(bool){
-        return elector[elector_] != address(0); // se retornar false nao existe
+        return electorContracts[elector_] != address(0); // se retornar false nao existe
     }
 }
