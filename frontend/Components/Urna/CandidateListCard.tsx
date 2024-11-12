@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function CandidateListCard(){
     return(
-        <div className="bg-[#c9f0cb] w-full h-28 flex justify-center rounded-md gap-4 h-[25%]">
+        <div className="bg-[#c9f0cb] w-full flex justify-center rounded-md gap-4 h-[25%]">
             <div className='w-[40%] flex jusfity-center'>
                 <Image width={110} height={120} src="/images/bozonaro.png" alt="justica_eleitoral" className='rounded-md border-green-100 border-2 w-full h-full'></Image>
             </div>
