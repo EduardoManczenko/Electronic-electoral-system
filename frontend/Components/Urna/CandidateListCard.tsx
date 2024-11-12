@@ -14,7 +14,7 @@ export default function CandidateListCard(){
                 <div>22</div>
             </div>
 
-            <div className='flex flex-col text-lg justify-center pr-2 w-[80%]'>
+            <div className='flex flex-col text-sm justify-center pr-2 w-[80%]'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt iure obcaecati esse officiis nemo atque eligendi lorem, Nesciunt iure obcaecati esse officiis nemo atque eligendi lorem, Nesciunt iure obcaecati esse officiis nemo atque eligendi lorem, Nesciunt iure obcaecati esse officiis nemo atque eligendi lorem
             </div>
     </div>
