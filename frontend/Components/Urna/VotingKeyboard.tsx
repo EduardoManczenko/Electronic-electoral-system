@@ -34,7 +34,7 @@ const VotingKeyboard = () => {
           <button
             key={num}
             onClick={() => handleNumberClick(num)}
-            className="bg-black text-white text-sm p-2 rounded-md"
+            className="bg-black text-white text-md p-2 rounded-md"
           >
             {num}
           </button>
@@ -42,21 +42,21 @@ const VotingKeyboard = () => {
 
         <button
           onClick={handleBrancoClick}
-          className="bg-gray-200 text-black text-xs p-2 col-span-2 rounded-md"
+          className="bg-gray-200 text-black text-lg font-bold p-2 col-span-2 rounded-md"
         >
           BRANCO
         </button>
 
         <button
           onClick={handleCorrigeClick}
-          className="bg-orange-500 text-black text-xs p-2 rounded-md"
+          className="bg-orange-500 text-black text-lg font-bold p-2 rounded-md"
         >
           CORRIGE
         </button>
 
         <button
           onClick={handleConfirmaClick}
-          className="bg-green-500 text-white text-xs p-2 col-span-2 rounded-md"
+          className="bg-green-500 text-white text-lg font-bold p-2 col-span-2 rounded-md"
         >
           CONFIRMA
         </button>
