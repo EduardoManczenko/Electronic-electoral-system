@@ -8,7 +8,7 @@ export default function CandidateListCard(){
                 <Image width={110} height={120} src="/images/bozonaro.png" alt="justica_eleitoral" className='rounded-md border-green-100 border-2 w-full h-full'></Image>
             </div>
 
-            <div className='flex flex-col items-center justify-center gap-1 font-bold w-[20%] text-lg font-bold'>
+            <div className='flex flex-col items-center justify-center gap-1 w-[20%] text-lg font-bold'>
                 <div>Jair Bolsonaro</div>
                 <div>PT</div>
                 <div>22</div>
