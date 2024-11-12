@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Header } from "@/Components/Header";
 
 export const metadata: Metadata = {
   title: "Urna",
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
+        <Header/>
         {children}
       </body>
     </html>
