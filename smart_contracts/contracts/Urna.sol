@@ -14,7 +14,7 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
     error alreadyVoted_(address elector, uint position);
     error candidadeNotFound(address candidate);
     error electorNotFound(address elector);
-
+    error candidateNotExists(uint ppn);
 
    constructor(address _TSE)
    Ownable(_TSE)
@@ -43,9 +43,9 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
         return votes[candidate];
     }
 
-    function verifyCandidates(uint position_) public view returns(address[] memory candidateAddress , string[] memory politicalPartyNumber){
+    function verifyCandidates(uint position_) public view returns(address[] memory candidateAddress , uint[] memory politicalPartyNumber){
 
-        string[] memory partyNumbers = new string[](candidates[position_].length);
+        uint[] memory partyNumbers = new uint[](candidates[position_].length);
 
         for(uint i = 0; i < partyNumbers.length; i++){
             Candidate candidate = Candidate(candidates[position_][i]);
@@ -56,7 +56,28 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
         return (candidates[position_], partyNumbers);
     }
 
+    function verifyCandidatesByPPN(uint position_, uint ppn) public view returns(address){
+        (address[] memory candidateAddress, uint[] memory candidatePNN) = verifyCandidates(position_);
 
+        for(uint i = 0; i <= candidateAddress.length; i++){
+            if(candidatePNN[i] == ppn){
+                return candidateAddress[i];
+            }
+        }
+        revert candidateNotExists(ppn);
+    }
+
+    function verifyCandidatesData(uint position_) public view returns(candidateData[] memory){
+        candidateData[] memory allData = new candidateData[](candidates[position_].length);
+
+        for(uint i = 0; i < allData.length; i++){
+            Candidate candidate = Candidate(candidates[position_][i]);
+            candidateData memory data = candidate.returnCandidateData();
+            allData[i] = data;
+        }
+
+        return allData;
+    }
 
     function verifyElectors()public view returns(address[] memory){
         return electors;
