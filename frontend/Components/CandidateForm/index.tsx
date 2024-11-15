@@ -7,7 +7,8 @@ export default function CandidateForm() {
     describe: "",
     candidatePhoto: "",
     politicalPartyName: "",
-    politicalPartyNumber: ""
+    politicalPartyNumber: "",
+    walletAddress: ""
   });
 
   const handleChange = (e: any) => {
@@ -25,6 +26,19 @@ export default function CandidateForm() {
     <div className="flex justify-center items-center min-h-screen bg-green-200">
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4 text-center">Registro de Candidato</h2>
+
+
+        <div className="mb-4">
+          <label className="block text-gray-700">Endereço Proprietario</label>
+          <input
+            type="text"
+            name="walletAddress"
+            value={formData.walletAddress}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            placeholder="0x..."
+          />
+        </div>
 
         <div className="mb-4">
           <label className="block text-gray-700">Nome</label>
