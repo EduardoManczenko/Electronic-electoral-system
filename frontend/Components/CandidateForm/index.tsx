@@ -1,5 +1,7 @@
 'use client'
 import { useState } from "react";
+import { ethers } from "ethers";
+import { URNA_ADDRESS , ABI } from "../../config";
 
 export default function CandidateForm() {
   const [formData, setFormData] = useState({
@@ -10,16 +12,62 @@ export default function CandidateForm() {
     politicalPartyNumber: "",
     walletAddress: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log("Form Data:", formData);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      if (!window.ethereum) {
+        throw new Error("MetaMask não está instalado!");
+      }
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+
+      const contract = new ethers.Contract(
+        URNA_ADDRESS,
+        [ABI.createCandidateFunction],
+        signer
+      );
+
+      const candidateData = {
+        name: formData.name,
+        describe: formData.describe,
+        candidatePhoto: formData.candidatePhoto,
+        politicalPartyName: formData.politicalPartyName,
+        politicalPartyNumber: formData.politicalPartyNumber
+      };
+
+      const tx = await contract.createCandidate(candidateData, formData.walletAddress);
+      console.log("Transação enviada:", tx);
+
+      await tx.wait();
+      console.log("Transação confirmada:", tx);
+      alert("Candidato registrado com sucesso!");
+
+      setFormData({
+        name: "",
+        describe: "",
+        candidatePhoto: "",
+        politicalPartyName: "",
+        politicalPartyNumber: "",
+        walletAddress: ""
+      });
+    } catch (err) {
+      console.error("Erro ao registrar candidato:", err);
+      setError("Erro ao registrar candidato. Verifique os dados ou tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -27,9 +75,8 @@ export default function CandidateForm() {
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4 text-center">Registro de Candidato</h2>
 
-
         <div className="mb-4">
-          <label className="block text-gray-700">Endereço Proprietario</label>
+          <label className="block text-gray-700">Endereço Proprietário</label>
           <input
             type="text"
             name="walletAddress"
@@ -94,11 +141,14 @@ export default function CandidateForm() {
           />
         </div>
 
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+
         <button
           type="submit"
           className="w-full bg-green-500 text-white font-bold py-2 rounded-lg hover:bg-green-600 transition-colors"
+          disabled={isSubmitting}
         >
-          Registrar Candidato
+          {isSubmitting ? "Registrando..." : "Registrar Candidato"}
         </button>
       </form>
     </div>

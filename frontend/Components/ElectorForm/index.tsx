@@ -37,10 +37,7 @@ export default function ElectorForm() {
       if (!window.ethereum) {
         throw new Error("MetaMask não está instalado!");
       }
-
-      // Solicitar acesso à carteira do usuário
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-   
+      
       const provider = new ethers.BrowserProvider(window.ethereum)
 
       const signer = await provider.getSigner();
