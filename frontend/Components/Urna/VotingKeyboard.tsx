@@ -1,8 +1,12 @@
 // components/VotingKeyboard.js
 import React, { useState } from 'react';
+import { ethers } from "ethers";
+import { URNA_ADDRESS, ABI } from "../../config";
 
 const VotingKeyboard = () => {
   const [input, setInput] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleNumberClick = (num: number) => {
     if (input.length < 2) { // Limita a 2 dígitos, se necessário
@@ -18,9 +22,56 @@ const VotingKeyboard = () => {
     setInput('');
   };
 
-  const handleConfirmaClick = () => {
-    alert(`Número votado: ${input}`);
-    setInput('');
+  const handleConfirmaClick = async () => {
+    if (!input) {
+      alert("Insira um número para votar ou escolha BRANCO.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      if (!window.ethereum) {
+        throw new Error("MetaMask não está instalado!");
+      }
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+
+      const contract = new ethers.Contract(URNA_ADDRESS, [ABI.voteFunction], signer);
+
+
+      //telas para votar em mais de uma posicao
+      const position = ''
+      //fazer funcoes para pegar o candidate address do smart contract a partir do politcal party number, ou mudar para ver e votar pelo political party number
+      const candidateAddress = ''; 
+
+      if (input === 'BRANCO') {
+        const tx = await contract.vote(ethers.ZeroAddress, position)
+        console.log("Transação enviada:", tx);
+
+        await tx.wait();
+        console.log("Transação confirmada:", tx);
+
+        alert("Voto em branco registrado.");
+      } else {
+      
+        const tx = await contract.vote(candidateAddress, position);
+        console.log("Transação enviada:", tx);
+
+        await tx.wait();
+        console.log("Transação confirmada:", tx);
+
+        alert(`Voto registrado para o número ${input}!`);
+      }
+      setInput('');
+    } catch (err) {
+      console.error("Erro ao votar:", err);
+      setError("Erro ao votar. Verifique sua conexão ou tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -56,11 +107,14 @@ const VotingKeyboard = () => {
 
         <button
           onClick={handleConfirmaClick}
-          className="bg-green-500 text-white text-lg font-bold p-2 col-span-2 rounded-md"
+          className={`bg-green-500 text-white text-lg font-bold p-2 col-span-2 rounded-md ${isSubmitting ? 'opacity-50' : ''}`}
+          disabled={isSubmitting}
         >
-          CONFIRMA
+          {isSubmitting ? "Registrando..." : "CONFIRMA"}
         </button>
       </div>
+
+      {error && <p className="text-red-500 mt-4">{error}</p>}
     </div>
   );
 };
