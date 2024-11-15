@@ -43,9 +43,20 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
         return votes[candidate];
     }
 
-    function verifyCandidates(uint position_) public view returns(address[] memory){
-        return candidates[position_];
+    function verifyCandidates(uint position_) public view returns(address[] memory candidateAddress , string[] memory politicalPartyNumber){
+
+        string[] memory partyNumbers = new string[](candidates[position_].length);
+
+        for(uint i = 0; i < partyNumbers.length; i++){
+            Candidate candidate = Candidate(candidates[position_][i]);
+            candidateData memory data = candidate.returnCandidateData();
+            partyNumbers[i] = data.politicalPartyNumber;
+        }
+
+        return (candidates[position_], partyNumbers);
     }
+
+
 
     function verifyElectors()public view returns(address[] memory){
         return electors;

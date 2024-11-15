@@ -31,7 +31,7 @@ describe('Urna Contract', function(){
             await urna.contract.connect(tse).createCandidate(candidateData, 1)
 
             const candidate = await urna.contract.verifyCandidates(1);
-            expect(candidate.length).to.equal(1);
+            expect(candidate[0].length).to.equal(1);
         })
         it('verificar se outro endereco nao pode criar um candidato', async function(){
             const candidateData = {
@@ -69,22 +69,22 @@ describe('Urna Contract', function(){
     describe('vote()', async function(){
         it('verificar se um endereco de eleitor valido pode votar', async function(){
             const candidate = await urna.contract.verifyCandidates(1);
+            
+            await urna.contract.connect(elector1).vote(candidate[0][0], 1);
 
-            await urna.contract.connect(elector1).vote(candidate[0], 1);
-
-            const votes = await urna.contract.verifyVotes(candidate[0]);
+            const votes = await urna.contract.verifyVotes(candidate[0][0]);
 
             expect(votes).to.equal(1)
         })
         it('verificar se um endereco de eleitor invalido nao pode votar', async function(){
             const candidate = await urna.contract.verifyCandidates(1);
 
-            await expect(urna.contract.connect(elector2).vote(candidate[0], 1)).to.be.revertedWithCustomError(urna.contract, "electorNotFound")
+            await expect(urna.contract.connect(elector2).vote(candidate[0][0], 1)).to.be.revertedWithCustomError(urna.contract, "electorNotFound")
         })
         it('verificar se nao e possivel votar para uma posicao que o eleitor ja tenha votado', async function(){
             const candidate = await urna.contract.verifyCandidates(1);
 
-            await expect(urna.contract.connect(elector1).vote(candidate[0], 1)).to.be.revertedWithCustomError(urna.contract, "alreadyVoted_");
+            await expect(urna.contract.connect(elector1).vote(candidate[0][0], 1)).to.be.revertedWithCustomError(urna.contract, "alreadyVoted_");
         })
         it('verificar se nao e possivel votar em um candidato que nao exista', async function(){
             const candidate = await urna.contract.verifyCandidates(1);
