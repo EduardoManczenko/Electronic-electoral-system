@@ -41,9 +41,7 @@ export default function ElectorForm() {
       // Solicitar acesso à carteira do usuário
       await window.ethereum.request({ method: "eth_requestAccounts" });
    
-      const rpcUrl = "rpc_url"; 
-
-      const provider = new ethers.JsonRpcProvider(rpcUrl);
+      const provider = new ethers.BrowserProvider(window.ethereum)
 
       const signer = await provider.getSigner();
 
