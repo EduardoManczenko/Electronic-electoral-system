@@ -39,13 +39,13 @@ const VotingKeyboard = () => {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
 
-      const contract = new ethers.Contract(URNA_ADDRESS, [ABI.voteFunction], signer);
+      const contract = new ethers.Contract(URNA_ADDRESS, [ABI.voteFunction, ABI.verifyCandidatesByPNN], signer);
 
 
-      //telas para votar em mais de uma posicao
-      const position = ''
-      //fazer funcoes para pegar o candidate address do smart contract a partir do politcal party number, ou mudar para ver e votar pelo political party number
-      const candidateAddress = ''; 
+      //telas para votar em mais de uma posicao dependendo da aba selecionada ira setar o valor da posiçao
+      const position = ""
+
+      
 
       if (input === 'BRANCO') {
         const tx = await contract.vote(ethers.ZeroAddress, position)
@@ -56,7 +56,7 @@ const VotingKeyboard = () => {
 
         alert("Voto em branco registrado.");
       } else {
-      
+        const candidateAddress = await contract.verifyCandidatesByPPN(position, input); 
         const tx = await contract.vote(candidateAddress, position);
         console.log("Transação enviada:", tx);
 
