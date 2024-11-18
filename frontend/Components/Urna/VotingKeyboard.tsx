@@ -1,9 +1,8 @@
-// components/VotingKeyboard.js
 import React, { useState } from 'react';
 import { ethers } from "ethers";
 import { URNA_ADDRESS, ABI } from "../../config";
 
-const VotingKeyboard = () => {
+const VotingKeyboard = ({ position }: { position: number }) => {
   const [input, setInput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,16 +38,10 @@ const VotingKeyboard = () => {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
 
-      const contract = new ethers.Contract(URNA_ADDRESS, [ABI.voteFunction, ABI.verifyCandidatesByPNN], signer);
-
-
-      //telas para votar em mais de uma posicao dependendo da aba selecionada ira setar o valor da posiçao
-      const position = ""
-
-      
+      const contract = new ethers.Contract(URNA_ADDRESS, ABI, signer);
 
       if (input === 'BRANCO') {
-        const tx = await contract.vote(ethers.ZeroAddress, position)
+        const tx = await contract.vote(ethers.ZeroAddress, position);
         console.log("Transação enviada:", tx);
 
         await tx.wait();
@@ -56,7 +49,7 @@ const VotingKeyboard = () => {
 
         alert("Voto em branco registrado.");
       } else {
-        const candidateAddress = await contract.verifyCandidatesByPPN(position, input); 
+        const candidateAddress = await contract.verifyCandidatesByPPN(position, input);
         const tx = await contract.vote(candidateAddress, position);
         console.log("Transação enviada:", tx);
 
