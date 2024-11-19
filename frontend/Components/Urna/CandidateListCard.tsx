@@ -13,8 +13,8 @@ export default function CandidateListCard({ candidate }: { candidate: Candidate 
     <div className="bg-[#c9f0cb] w-full flex justify-center rounded-md gap-4 h-[30%]">
       <div className="w-[30%] flex justify-center">
         <Image
-          width={110}
-          height={120}
+          width={2000}
+          height={2000}
           src={candidate.candidatePhoto}
           alt={candidate.name}
           className="rounded-md border-green-100 border-2 w-full h-full object-cover"

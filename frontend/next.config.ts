@@ -5,3 +5,10 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+
+module.exports = {
+  images: {
+    domains: ['midias.correiobraziliense.com.br'], // Adicione o domínio aqui
+  },
+};

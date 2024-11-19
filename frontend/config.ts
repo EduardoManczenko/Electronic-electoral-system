@@ -1,4 +1,4 @@
-export const URNA_ADDRESS: any = "0x00"
+export const URNA_ADDRESS: any = "0x82Ea504469f2A0283DaC1F97Cc5181Db8c614928"
 
 export const ABI: any = [
     {

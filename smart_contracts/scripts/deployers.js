@@ -5,7 +5,7 @@ const urnaContract = async (data) => {
     const Contract = await ethers.getContractFactory("Urna")
 
     const contract = await Contract.deploy(
-        data.tse
+        data.tseAddress
     )
 
 
@@ -16,7 +16,7 @@ const urnaContractVerified = async (data, contractAddress) => {
     await hre.run("verify:verify", {
         address: contractAddress,
         constructorArguments:[
-            data.tse
+            data.tseAddress
         ],
     });
 }

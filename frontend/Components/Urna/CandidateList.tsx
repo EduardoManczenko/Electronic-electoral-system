@@ -27,12 +27,12 @@ export default function CandidateList({ position }: { position: number }) {
         if (!window.ethereum) {
           throw new Error('MetaMask não está instalado!');
         }
-        const rpc_url = "https://polygon.llamarpc.com"
+        const rpc_url = "https://polygon-amoy.drpc.org"
         const provider = new ethers.JsonRpcProvider(rpc_url);
         const contract = new ethers.Contract(URNA_ADDRESS, ABI, provider);
-
+        console.log("aoooooooo", position)
         const candidatesData: [string, string, string, string, number][] = await contract.verifyCandidatesData(position);
-
+        console.log(candidatesData, "aquiuiiiii")
         // Mapear os dados retornados para o formato esperado pelo componente
         const parsedCandidates = candidatesData.map(([name, describe, candidatePhoto, politicalPartyName, politicalPartyNumber]) => ({
           name,

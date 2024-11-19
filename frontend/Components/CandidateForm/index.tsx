@@ -10,7 +10,7 @@ export default function CandidateForm() {
     candidatePhoto: "",
     politicalPartyName: "",
     politicalPartyNumber: "",
-    walletAddress: ""
+    position: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +35,7 @@ export default function CandidateForm() {
 
       const contract = new ethers.Contract(
         URNA_ADDRESS,
-        [ABI.createCandidateFunction],
+        ABI,
         signer
       );
 
@@ -47,7 +47,7 @@ export default function CandidateForm() {
         politicalPartyNumber: formData.politicalPartyNumber
       };
 
-      const tx = await contract.createCandidate(candidateData, formData.walletAddress);
+      const tx = await contract.createCandidate(candidateData, formData.position);
       console.log("Transação enviada:", tx);
 
       await tx.wait();
@@ -60,7 +60,7 @@ export default function CandidateForm() {
         candidatePhoto: "",
         politicalPartyName: "",
         politicalPartyNumber: "",
-        walletAddress: ""
+        position: ""
       });
     } catch (err) {
       console.error("Erro ao registrar candidato:", err);
@@ -76,16 +76,24 @@ export default function CandidateForm() {
         <h2 className="text-2xl font-bold mb-4 text-center">Registro de Candidato</h2>
 
         <div className="mb-4">
-          <label className="block text-gray-700">Endereço Proprietário</label>
-          <input
-            type="text"
-            name="walletAddress"
-            value={formData.walletAddress}
+          <label className="block text-gray-700">Posição</label>
+          <select
+            name="position"
+            value={formData.position}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-            placeholder="0x..."
-          />
+          >
+            <option value="" disabled>
+              Selecione uma posição
+            </option>
+            <option value="1">Presidente</option>
+            <option value="2">Governador</option>
+            <option value="3">Senador</option>
+            <option value="4">Deputado Estadual</option>
+            <option value="5">Deputado Federal</option>
+          </select>
         </div>
+
 
         <div className="mb-4">
           <label className="block text-gray-700">Nome</label>

@@ -42,7 +42,7 @@ export default function ElectorForm() {
 
       const signer = await provider.getSigner();
 
-      const contract = new ethers.Contract(URNA_ADDRESS, [ABI.createElectorFunction], signer);
+      const contract = new ethers.Contract(URNA_ADDRESS, ABI, signer);
 
       const electorData = {
         name: formData.name,
