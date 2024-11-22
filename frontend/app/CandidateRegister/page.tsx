@@ -1,4 +1,4 @@
-import CandidateForm from '../../Components/CandidateForm/index';
+import CandidateForm from '../Components/CandidateForm/index';
 
 export default function CandidateRegister(){
     return(

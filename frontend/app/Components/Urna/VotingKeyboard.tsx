@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ethers } from "ethers";
-import { URNA_ADDRESS, ABI } from "../../config";
+import { URNA_ADDRESS, ABI } from "../../../config";
 
 const VotingKeyboard = ({ position }: { position: number }) => {
   const [input, setInput] = useState('');

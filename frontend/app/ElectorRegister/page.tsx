@@ -1,4 +1,4 @@
-import ElectorForm from '../../Components/ElectorForm/index';
+import ElectorForm from '../Components/ElectorForm/index';
 
 export default function ElectorRegister(){
     return(

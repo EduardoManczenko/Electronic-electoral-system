@@ -1,4 +1,4 @@
-import { Urna } from '../Components/Urna/index';
+import { Urna } from './Components/Urna/index';
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import { ethers } from "ethers";
-import { URNA_ADDRESS , ABI } from "../../config";
+import { URNA_ADDRESS , ABI } from "../../../config";
 
 export default function CandidateForm() {
   const [formData, setFormData] = useState({

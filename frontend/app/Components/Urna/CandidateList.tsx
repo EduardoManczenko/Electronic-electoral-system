@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import CandidateListCard from './CandidateListCard';
 import { ethers } from 'ethers';
-import { URNA_ADDRESS, ABI } from '../../config';
+import { URNA_ADDRESS, ABI } from '../../../config';
 
 interface CandidateData {
   name: string;
