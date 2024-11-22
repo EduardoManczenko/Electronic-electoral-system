@@ -13,7 +13,7 @@ const main = async () =>{
     //console.log(Urna.target) //VOLTA CONTRACT-ADDRESS
 
     //verificar blockexplorer
-    await deployers.urnaContractVerified(urnaData, "0x82Ea504469f2A0283DaC1F97Cc5181Db8c614928")
+    await deployers.urnaContractVerified(urnaData, "0x6c3f9f1687422C6C933AbbfC5F4c4B08A1Fcdd32")
 }
 
 main()

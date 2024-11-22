@@ -1,14 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**", 
+        pathname: "/**/*.{png,jpg,jpeg,gif,webp,svg}", 
+      },
+      {
+        protocol: "http",
+        hostname: "**", 
+        pathname: "/**/*.{png,jpg,jpeg,gif,webp,svg}",
+      },
+    ],
+  },
+
 };
 
 export default nextConfig;
-
-
-module.exports = {
-  images: {
-    domains: ['midias.correiobraziliense.com.br'], // Adicione o domínio aqui
-  },
-};

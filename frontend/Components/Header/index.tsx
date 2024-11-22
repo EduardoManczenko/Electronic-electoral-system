@@ -1,16 +1,17 @@
 'use client'
 import { useState } from "react";
-import { ethers } from "ethers";
 import Link from "next/link";
 import HeaderText from "./HeaderText";
 import Image from 'next/image';
 
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
     interface Window {
       ethereum?: any;
     }
   }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export function Header() {
     const [walletAddress, setWalletAddress] = useState<string | null>(null);

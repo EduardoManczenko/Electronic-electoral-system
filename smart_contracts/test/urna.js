@@ -10,7 +10,9 @@ let [tse, elector1, elector2, elector3, elector4, elector5, candidate1, cadidate
 
 describe('Urna Contract', function(){
     it('testUrnaDeploy', async function(){
+       
         urna = await deploy.urna()
+       
     })
 
     it('getUsers', async function(){
@@ -25,7 +27,8 @@ describe('Urna Contract', function(){
                 describe: "um mundo com mais natureza!",
                 candidatePhoto: "wwww.com.br/minhafoto.png",
                 politicalPartyName: "NOME_PARTIDO",
-                politicalPartyNumber: "00"
+                politicalPartyNumber: "00",
+                votes: 0
             };
 
             await urna.contract.connect(tse).createCandidate(candidateData, 1)
@@ -39,7 +42,8 @@ describe('Urna Contract', function(){
                 describe: "um mundo com mais natureza!",
                 candidatePhoto: "wwww.com.br/minhafoto.png",
                 politicalPartyName: "NOME_PARTIDO",
-                politicalPartyNumber: "00"
+                politicalPartyNumber: "00",
+                votes: 0
             };
 
             await expect(urna.contract.connect(elector1).createCandidate(candidateData, 1)).to.be.revertedWithCustomError(urna.contract, "OwnableUnauthorizedAccount")

@@ -12,12 +12,12 @@ export default function ElectorForm() {
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleCpfChange = (e: any) => {
+  const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const formattedCpf = value
       .replace(/\D/g, "")
@@ -28,7 +28,7 @@ export default function ElectorForm() {
     setFormData({ ...formData, cpf: formattedCpf });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     setIsSubmitting(true);

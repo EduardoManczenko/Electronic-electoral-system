@@ -13,6 +13,14 @@ contract Candidate is CandidateStructs{
         urna = urna_;
     }
 
+    modifier onlyUrna(){
+        require(msg.sender == urna, "!urna");
+        _;
+    }
+
+    function vote() public onlyUrna(){
+        data.votes++;
+    }
 
     function returnCandidateData()public view returns(candidateData memory){
         return data;

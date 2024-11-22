@@ -34,13 +34,19 @@ contract Urna is  Ownable, UrnaRegister, UrnaVoteControl{
         if(!electorExists) revert electorNotFound(msg.sender);
 
         setVoteControl(msg.sender, position);
-        votes[candidate]++;
         
-        emit voted(msg.sender, candidate, votes[candidate]);
+        Candidate candidateChoice = Candidate(candidate);
+        candidateChoice.vote();
+        candidateData memory data = candidateChoice.returnCandidateData();
+
+        emit voted(msg.sender, candidate, data.votes);
     }
 
     function verifyVotes(address candidate) public view returns(uint){
-        return votes[candidate];
+        Candidate candidateChoice = Candidate(candidate);
+        candidateData memory data = candidateChoice.returnCandidateData();
+
+        return data.votes;
     }
 
     function verifyCandidates(uint position_) public view returns(address[] memory candidateAddress , uint[] memory politicalPartyNumber){

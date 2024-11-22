@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Urna } from '../Components/Urna/index';
 
 export default function Home() {

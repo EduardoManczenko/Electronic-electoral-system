@@ -6,6 +6,4 @@ contract UrnaStructs{
     mapping(uint => address[]) candidates;
     mapping(address => address) electorContracts;
     address[] electors;
-    mapping(address => uint) votes;
-    
 }

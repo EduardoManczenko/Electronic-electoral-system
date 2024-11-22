@@ -11,6 +11,7 @@ interface CandidateData {
   candidatePhoto: string;
   politicalPartyName: string;
   politicalPartyNumber: number;
+  votes: number;
 }
 
 export default function CandidateList({ position }: { position: number }) {
@@ -24,22 +25,18 @@ export default function CandidateList({ position }: { position: number }) {
       setError(null);
 
       try {
-        if (!window.ethereum) {
-          throw new Error('MetaMask não está instalado!');
-        }
-        const rpc_url = "https://polygon-amoy.drpc.org"
+        const rpc_url = 'https://polygon-amoy.drpc.org';
         const provider = new ethers.JsonRpcProvider(rpc_url);
         const contract = new ethers.Contract(URNA_ADDRESS, ABI, provider);
-        console.log("aoooooooo", position)
-        const candidatesData: [string, string, string, string, number][] = await contract.verifyCandidatesData(position);
-        console.log(candidatesData, "aquiuiiiii")
-        // Mapear os dados retornados para o formato esperado pelo componente
-        const parsedCandidates = candidatesData.map(([name, describe, candidatePhoto, politicalPartyName, politicalPartyNumber]) => ({
+        const candidatesData: [string, string, string, string, number, number][] = await contract.verifyCandidatesData(position);
+
+        const parsedCandidates = candidatesData.map(([name, describe, candidatePhoto, politicalPartyName, politicalPartyNumber, votes]) => ({
           name,
           describe,
           candidatePhoto,
           politicalPartyName,
           politicalPartyNumber,
+          votes,
         }));
 
         setCandidates(parsedCandidates);
@@ -64,12 +61,20 @@ export default function CandidateList({ position }: { position: number }) {
 
   return (
     <div className="flex flex-col w-full h-full gap-1 overflow-y-scroll scrollbar-hide custom-scroll">
+      {/* Cabeçalho fixo */}
+      <div className="sticky top-0 bg-[#c9f0cb] w-full flex justify-center gap-4 h-[10%] z-10 border-b-2 border-b-green-400">
+        <div className="w-[30%] flex items-center justify-center text-lg font-bold">Foto</div>
+        <div className="w-[20%] flex items-center justify-center text-lg font-bold">Nome/Partido</div>
+        <div className="w-[65%] flex items-center justify-center text-lg font-bold">Descrição</div>
+        <div className="w-[15%] flex items-center justify-center text-lg font-bold">Votos</div>
+      </div>
+
+      {/* Lista de candidatos */}
       {candidates.map((candidate, index) => (
         <CandidateListCard key={index} candidate={candidate} />
       ))}
 
       <style jsx>{`
-        /* Estiliza a barra de rolagem apenas para o componente */
         .custom-scroll::-webkit-scrollbar {
           width: 4px;
         }
@@ -79,15 +84,14 @@ export default function CandidateList({ position }: { position: number }) {
         }
 
         .custom-scroll::-webkit-scrollbar-thumb {
-          background-color: #84e28c; /* Cor verde claro */
-          border-radius: 9999px; /* Deixa o polegar arredondado */
+          background-color: #84e28c;
+          border-radius: 9999px;
         }
 
         .custom-scroll::-webkit-scrollbar-button {
           display: none;
         }
 
-        /* Para Firefox */
         .custom-scroll {
           scrollbar-width: thin;
           scrollbar-color: #9e9e9e transparent;

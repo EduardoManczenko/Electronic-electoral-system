@@ -15,12 +15,12 @@ export default function CandidateForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
@@ -44,7 +44,8 @@ export default function CandidateForm() {
         describe: formData.describe,
         candidatePhoto: formData.candidatePhoto,
         politicalPartyName: formData.politicalPartyName,
-        politicalPartyNumber: formData.politicalPartyNumber
+        politicalPartyNumber: formData.politicalPartyNumber,
+        votes: 0
       };
 
       const tx = await contract.createCandidate(candidateData, formData.position);

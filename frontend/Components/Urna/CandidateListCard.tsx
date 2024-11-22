@@ -6,6 +6,7 @@ interface Candidate {
   candidatePhoto: string;
   politicalPartyName: string;
   politicalPartyNumber: number;
+  votes: number;
 }
 
 export default function CandidateListCard({ candidate }: { candidate: Candidate }) {
@@ -27,8 +28,11 @@ export default function CandidateListCard({ candidate }: { candidate: Candidate 
         <div>{candidate.politicalPartyNumber}</div>
       </div>
 
-      <div className="flex flex-col text-sm justify-center pr-2 w-[80%]">
+      <div className="flex flex-col text-sm justify-center pr-2 w-[65%]">
         {candidate.describe}
+      </div>
+      <div className="flex flex-col text-md items-center justify-center w-[15%]">
+        {candidate.votes}
       </div>
     </div>
   );
