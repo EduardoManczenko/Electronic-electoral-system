@@ -4,8 +4,12 @@ import { Header } from "@/Components/Header";
 
 export const metadata: Metadata = {
   title: "Urna",
-  description: "Eletronic Electoral System",
+  description: "Electronic Electoral System",
+  icons: {
+    icon: "/images/logo_justica_eleitoral_2.png", // Caminho para o favicon
+  },
 };
+
 
 export default function RootLayout({
   children,
